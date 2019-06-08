@@ -23,5 +23,5 @@ key | description
 **scan_interval (Optional)** | (integer) How frequently to query for new data. Defaults to 1800 seconds.
 
 #### Sample overview
-![Sample overview](/images/correios.png)
+![Sample overview](images/correios.png)
 
