@@ -22,7 +22,8 @@ key | description
 **name (Optional)** | (String) The name to use when displaying this Transmission instance in the frontend. Defaults to correios.
 **scan_interval (Optional)** | (integer) How frequently to query for new data. Defaults to 1800 seconds.
 
-**Possible sensor states:**
+#### Possible sensor states
+
 state | description
 :--- | :---
 **postado** | Object posted.
