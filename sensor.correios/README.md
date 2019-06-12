@@ -1,8 +1,8 @@
 # Sensor for Correios - Brazilian postal service 
 The correios platform allows one to track deliveries by [Correios](http://www.correios.com.br/) using [Link & track](https://linketrack.com/) API.
 
-To get started put `/custom_components/hadockermon/binary_sensor.py` here:
-`<config directory>/custom_components/hadockermon/binary_sensor.py`
+To get started put `/custom_components/correios/sensor.py` here:
+`<config directory>/custom_components/correios/sensor.py`
 
 **Example configuration.yaml:**
 ```yaml
