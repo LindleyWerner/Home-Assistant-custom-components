@@ -20,17 +20,17 @@ STATE_NOT_FOUND = 'sem_status'
 STATE_ERROR = 'erro'
 STATE_DELIVERED = 'entregue'
 STATE_DELIVERING = 'saindo_entrega'
-STATE_FAIL_DELIVER = 'entrega_falhou'
+STATE_DELIVERY_FAILED = 'entrega_falhou'
 STATE_POSTED = 'postado'
-STATE_DELIVER_ATTEMPT = 'tentativa_entrega'
+STATE_DELIVERY_ATTEMPT = 'tentativa_entrega'
 STATE_WAITING = 'esperando_retirada'
 STATE_ON_THE_WAY = 'a_caminho'
 
 STATUS_DELIVERED = 'Objeto entregue'
 STATUS_DELIVERING = 'Objeto saiu para entrega'
-STATUS_FAIL_DELIVER = 'A entrega não pode ser efetuada'
+STATUS_DELIVERY_FAILED = 'A entrega não pode ser efetuada'
 STATUS_POSTED = 'Objeto postado'
-STATUS_DELIVER_ATTEMPT = 'Tentativa de entrega'
+STATUS_DELIVERY_ATTEMPT = 'Tentativa de entrega'
 STATUS_WAITING = 'Objeto aguardando retirada'
 
 CORREIOS_AMOUNT = 'quantidade'
@@ -139,10 +139,10 @@ def set_state(status):
         return STATE_DELIVERED
     elif STATUS_DELIVERING in status:
         return STATE_DELIVERING
-    elif STATUS_DELIVER_ATTEMPT in status:
-        return STATE_DELIVER_ATTEMPT
-    elif STATUS_FAIL_DELIVER in status:
-        return STATE_FAIL_DELIVER
+    elif STATUS_DELIVERY_ATTEMPT in status:
+        return STATE_DELIVERY_ATTEMPT
+    elif STATUS_DELIVERY_FAILED in status:
+        return STATE_DELIVERY_FAILED
     elif STATUS_POSTED in status:
         return STATE_POSTED
     elif STATUS_WAITING in status:
