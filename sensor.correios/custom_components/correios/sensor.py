@@ -14,7 +14,7 @@ _LOGGER = logging.getLogger(__name__)
 DOMAIN = 'correios'
 ICON = 'mdi:package-variant-closed'
 CONF_CODE = 'code'
-BASE_URL = 'https://linketrack.com/{}/json'
+BASE_URL = 'https://linketrack.com/track/json?codigo={}'
 
 STATE_NOT_FOUND = 'sem_status'
 STATE_ERROR = 'erro'
@@ -40,15 +40,12 @@ CORREIOS_TIME = 'hora'
 CORREIOS_LOCAL = 'local'
 CORREIOS_STATUS = 'status'
 CORREIOS_SUB_STATUS = 'subStatus'
-CORREIOS_SUB_STATUS_1_INDEX = 0
-CORREIOS_SUB_STATUS_2_INDEX = 1
 
 ATTR_STATUS = 'status'
 ATTR_DATE = 'date'
 ATTR_TIME = 'time'
 ATTR_LOCAL = 'local'
-ATTR_SUB_STATUS_1 = 'info_1'
-ATTR_SUB_STATUS_2 = 'info_2'
+ATTR_SUB_STATUS = 'info'
 
 SCAN_INTERVAL = timedelta(seconds=1800)
 
@@ -78,8 +75,7 @@ class CorreiosSensor(Entity):
         self._time = None
         self._local = None
         self._status = None
-        self._sub_status_1 = None
-        self._sub_status_2 = None
+        self._sub_status = None
         self.update = Throttle(interval)(self.update)
 
     @property
@@ -106,8 +102,7 @@ class CorreiosSensor(Entity):
             ATTR_DATE: self._date,
             ATTR_TIME: self._time,
             ATTR_LOCAL: self._local,
-            ATTR_SUB_STATUS_1: self._sub_status_1,
-            ATTR_SUB_STATUS_2: self._sub_status_2
+            ATTR_SUB_STATUS: self._sub_status
         }
 
     def update(self):
@@ -128,8 +123,7 @@ class CorreiosSensor(Entity):
                 self._local = first_event[CORREIOS_LOCAL]
                 sub_status = first_event[CORREIOS_SUB_STATUS]
                 if (sub_status):
-                    self._sub_status_1 = sub_status[CORREIOS_SUB_STATUS_1_INDEX]
-                    self._sub_status_2 = sub_status[CORREIOS_SUB_STATUS_2_INDEX]
+                    self._sub_status = sub_status[0]
         except Exception as error:
             self._state = STATE_ERROR
             _LOGGER.debug('%s - Could not update - %s', self._name, error)
